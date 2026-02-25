@@ -83,3 +83,22 @@ Set-ExecutionPolicy Bypass -Scope Process; gemini
 - **"npm is not recognized"** -- Node.js не е инсталиран или не е добавен в PATH. Преинсталирайте Node.js.
 - **"Execution policy"** грешка -- Използвайте `Set-ExecutionPolicy Bypass -Scope Process` преди командата.
 - **Проблеми с версията** -- Уверете се, че имате Node.js 18+: `node -v`
+
+### ✗ Auto-update failed
+
+Ако видите съобщението:
+
+```
+✗ Auto-update failed · Try claude doctor or npm i -g @anthropic-ai/claude-code
+```
+
+**Как да поправите:**
+
+1. Стартирайте диагностиката:
+   ```powershell
+   claude doctor
+   ```
+2. Или преинсталирайте ръчно:
+   ```powershell
+   npm i -g @anthropic-ai/claude-code
+   ```
