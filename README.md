@@ -26,6 +26,30 @@ npm -v
 npm install -g @anthropic-ai/claude-code
 ```
 
+Очакван изход след успешна инсталация:
+
+```
+PS C:\WINDOWS\system32> npm install -g @anthropic-ai/claude-code
+added 2 packages in 9s
+1 package is looking for funding
+  run `npm fund` for details
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.11.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.0
+npm notice To update run: npm install -g npm@11.11.0
+npm notice
+PS C:\WINDOWS\system32>
+```
+
+> **За съобщението `npm notice New minor version of npm available!`:**
+> npm ви уведомява, че има нова версия на самия npm (мениджъра на пакети). Това **не е грешка** — Claude Code е инсталиран успешно. Ако искате да обновите npm, изпълнете отделно:
+>
+> ```powershell
+> npm install -g npm@11.11.0
+> ```
+>
+> Това обновява **самия npm**, а не Claude Code. Препоръчително е да го направите, за да имате последните подобрения и поправки на сигурността в мениджъра на пакети.
+
 ### Стартиране
 
 ```powershell
@@ -33,6 +57,42 @@ Set-ExecutionPolicy Bypass -Scope Process; claude
 ```
 
 > **Забележка:** `Set-ExecutionPolicy Bypass -Scope Process` временно разрешава изпълнението на скриптове само за текущата PowerShell сесия. Това е необходимо, защото Windows по подразбиране блокира изпълнението на скриптове.
+
+При първото стартиране може да видите следния изход:
+
+```
+PS C:\Users\Svet\...> Set-ExecutionPolicy Bypass -Scope Process; claude
+
+Execution Policy Change
+The execution policy helps protect you from scripts that you do not trust. Changing the execution
+policy might expose you to the security risks described in the about_Execution_Policies help topic at
+https:/go.microsoft.com/fwlink/?LinkID=135170. Do you want to change the execution policy?
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "N"): a
+
+Claude Code on Windows requires git-bash (https://git-scm.com/downloads/win). If installed but not
+in PATH, set environment variable pointing to your bash.exe, similar to:
+CLAUDE_CODE_GIT_BASH_PATH=C:\Program Files\Git\bin\bash.exe
+```
+
+**Обяснение на стъпките:**
+
+**1. Въпросът за execution policy** — Windows пита дали да промени политиката за изпълнение на скриптове. Въведете `a` (Yes to All), за да потвърдите. Това е безопасно, тъй като `Bypass -Scope Process` важи **само за текущата сесия** и се нулира при затваряне на PowerShell.
+
+**2. Съобщението за git-bash** — Claude Code на Windows изисква **Git Bash** като среда за изпълнение. Ако виждате това съобщение:
+
+- Изтеглете и инсталирайте Git за Windows от [https://git-scm.com/downloads/win](https://git-scm.com/downloads/win)
+- След инсталацията опитайте отново. Ако проблемът продължава, задайте системна променлива:
+
+```powershell
+$env:CLAUDE_CODE_GIT_BASH_PATH = "C:\Program Files\Git\bin\bash.exe"
+```
+
+или добавете постоянно чрез системните настройки на Windows:
+
+```
+Променлива: CLAUDE_CODE_GIT_BASH_PATH
+Стойност:   C:\Program Files\Git\bin\bash.exe
+```
 
 При първото стартиране Claude Code ще ви поиска да влезете в акаунта си в Anthropic или да въведете API ключ.
 
