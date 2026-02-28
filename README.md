@@ -11,6 +11,9 @@ Claude Code изисква **Node.js 18+**, а Gemini CLI изисква **Node.
 
 ```powershell
 node -v
+```
+
+```powershell
 npm -v
 ```
 
