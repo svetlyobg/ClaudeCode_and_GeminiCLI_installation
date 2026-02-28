@@ -36,7 +36,24 @@ winget install Anthropic.ClaudeCode
 
 > **winget** е вграденият мениджър на пакети на Windows (наличен на Windows 10 1709+ и Windows 11). Не изисква предварително инсталиран Node.js — всичко необходимо се инсталира автоматично. Подходящ избор, ако предпочитате по-опростена инсталация без допълнителни зависимости.
 
-Очакван изход след успешна инсталация:
+Очакван изход при инсталация чрез winget:
+
+```
+Found Claude Code [Anthropic.ClaudeCode] Version 2.1.62
+This application is licensed to you by its owner.
+Microsoft is not responsible for, nor does it grant any licenses to, third-party packages.
+Downloading https://storage.googleapis.com/.../claude.exe
+  ██████████████████████████████   225 MB /  225 MB
+Successfully verified installer hash
+Starting package install...
+Command line alias added: "claude"
+Path environment variable modified; restart your shell to use the new value.
+Successfully installed
+```
+
+> **Забележка след winget инсталация:** Съобщението `Path environment variable modified; restart your shell to use the new value.` означава, че трябва да **затворите и отворите отново PowerShell**, преди да можете да стартирате `claude`.
+
+Очакван изход след успешна инсталация чрез npm:
 
 ```
 PS C:\WINDOWS\system32> npm install -g @anthropic-ai/claude-code
