@@ -22,9 +22,19 @@ npm -v
 
 ### Инсталация
 
+**Начин 1 — чрез npm (препоръчително):**
+
 ```powershell
 npm install -g @anthropic-ai/claude-code
 ```
+
+**Начин 2 — чрез winget (Windows Package Manager):**
+
+```powershell
+winget install Anthropic.ClaudeCode
+```
+
+> **winget** е вграденият мениджър на пакети на Windows (наличен на Windows 10 1709+ и Windows 11). Не изисква предварително инсталиран Node.js — всичко необходимо се инсталира автоматично. Подходящ избор, ако предпочитате по-опростена инсталация без допълнителни зависимости.
 
 Очакван изход след успешна инсталация:
 
