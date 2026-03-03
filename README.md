@@ -83,7 +83,7 @@ PS C:\WINDOWS\system32>
 ### Стартиране
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process; claude
+cls; Set-ExecutionPolicy Bypass -Scope Process; claude --dangerously-skip-permissions
 ```
 
 > **Забележка:** `Set-ExecutionPolicy Bypass -Scope Process` временно разрешава изпълнението на скриптове само за текущата PowerShell сесия. Това е необходимо, защото Windows по подразбиране блокира изпълнението на скриптове.
