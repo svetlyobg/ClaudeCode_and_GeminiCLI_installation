@@ -156,6 +156,81 @@ Set-ExecutionPolicy Bypass -Scope Process; gemini
 
 ---
 
+## 4. Инсталиране на Ollama
+
+[Ollama](https://ollama.com/) позволява да стартирате големи езикови модели (LLM) локално на вашата машина. Полезно е за офлайн употреба, експериментиране и интеграция с други инструменти.
+
+### Инсталация
+
+```powershell
+irm https://ollama.com/install.ps1 | iex
+```
+
+След инсталацията проверете:
+
+```powershell
+ollama --version
+```
+
+```powershell
+where.exe ollama
+```
+
+### Сваляне на модел
+
+```powershell
+ollama pull llama3.1:8b
+```
+
+За да видите всички свалени модели:
+
+```powershell
+ollama list
+```
+
+### Преместване на Ollama на друго място (по избор)
+
+По подразбиране Ollama се инсталира в `C:\Users\<потребител>\AppData\Local\Programs\Ollama\`, а моделите се записват в `C:\Users\<потребител>\.ollama\`. Ако искате да преместите всичко на друго място (например `C:\Users\Svet\Documents\ollama\`), следвайте стъпките:
+
+**1. Спрете Ollama ако работи:**
+
+```powershell
+taskkill /f /im ollama.exe 2>$null
+taskkill /f /im "ollama app.exe" 2>$null
+```
+
+**2. Преместете файловете:**
+
+```powershell
+# Премести програмата
+Move-Item "C:\Users\Svet\AppData\Local\Programs\Ollama\*" "C:\Users\Svet\Documents\ollama\" -Force
+
+# Премести моделите (ако вече имаш свалени)
+Move-Item "C:\Users\Svet\.ollama\*" "C:\Users\Svet\Documents\ollama\models\" -Force
+```
+
+**3. Задайте environment variables:**
+
+```powershell
+# Кажи на системата къде са моделите
+[Environment]::SetEnvironmentVariable("OLLAMA_MODELS", "C:\Users\Svet\Documents\ollama\models", "User")
+
+# Добави ollama в PATH
+$currentPath = [Environment]::GetEnvironmentVariable("Path", "User")
+[Environment]::SetEnvironmentVariable("Path", "$currentPath;C:\Users\Svet\Documents\ollama", "User")
+```
+
+**4. Рестартирайте терминала и проверете:**
+
+```powershell
+where.exe ollama
+ollama --version
+```
+
+> **Забележка:** След промяна на environment variables е необходимо да **затворите и отворите отново PowerShell**, за да влязат в сила новите стойности.
+
+---
+
 ## Полезни команди
 
 | Команда | Описание |
@@ -165,6 +240,10 @@ Set-ExecutionPolicy Bypass -Scope Process; gemini
 | `gemini` | Стартира Gemini CLI |
 | `npm update -g @anthropic-ai/claude-code` | Обновява Claude Code |
 | `npm update -g @google/gemini-cli` | Обновява Gemini CLI |
+| `ollama list` | Показва свалените модели |
+| `ollama pull <модел>` | Сваля модел (напр. `llama3.1:8b`) |
+| `ollama run <модел>` | Стартира модел за чат |
+| `ollama --version` | Показва версията на Ollama |
 
 ---
 
